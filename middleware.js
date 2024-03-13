@@ -1,50 +1,51 @@
 module.exports.getAuth = async (req, res, next) => {
-	const cookie = req.headers.cookie;
-	if (!cookie) {
-		return res.status(403).json({
-			success: false,
-			message: "No JWT token provided",
-		});
-	}
+  const cookie = req.headers.cookie;
+  if (!cookie) {
+    return res.status(403).json({
+      success: false,
+      message: "No JWT token provided",
+    });
+  }
 
-	let token = "";
-	try {
-		console.log("Cookie: ", cookie);
-		token = cookie.split("=")[1];
+  let token = "";
+  try {
+    console.log("Cookie: ", cookie);
+    token = cookie.split("=")[1];
 
-		if (!token) {
-			return res.status(403).json({
-				success: false,
-				message: "No JWT token provided",
-			});
-		}
-	} catch (error) {
-		return res.status(403).json({
-			success: false,
-			message: "Some Error occurded while parsing the token",
-		});
-	}
+    if (!token) {
+      return res.status(403).json({
+        success: false,
+        message: "No JWT token provided",
+      });
+    }
+  } catch (error) {
+    return res.status(403).json({
+      success: false,
+      message: "Some Error occurded while parsing the token",
+    });
+  }
 
-	try {
-		const responseFromAuth = await fetch("http://localhost:8090/verify", {
-			method: "GET",
-			headers: {
-				cookie: `token=${token}`,
-			},
-		});
+  try {
+    const responseFromAuth = await fetch("http://localhost:8090/verify", {
+      method: "GET",
+      headers: {
+        cookie: `token=${token}`,
+      },
+    });
 
-		const { success, message, user } = await responseFromAuth.json();
+    const { success, message, user } = await responseFromAuth.json();
 
-		console.log(success, message, user);
-		if (!success) {
-			return res.status(403).json({
-				success: false,
-				message,
-			});
-		} else {
-			next();
-		}
-	} catch (error) {
-		console.log("Error from auth: ", error);
-	}
+    console.log(success, message, user);
+    if (!success) {
+      return res.status(403).json({
+        success: false,
+        message,
+      });
+    } else {
+      res.locals.user = user;
+      next();
+    }
+  } catch (error) {
+    console.log("Error from auth: ", error);
+  }
 };
