@@ -1,4 +1,8 @@
+// TODO: Only does authentication for now, will add authorization later
+const jwt = require("jsonwebtoken");
 module.exports.getAuth = async (req, res, next) => {
+	// Step 1: extract the token from cookie
+
 	const cookie = req.headers["authorization"];
 	if (!cookie) {
 		return res.status(403).json({
@@ -24,27 +28,27 @@ module.exports.getAuth = async (req, res, next) => {
 		});
 	}
 
+	// Step 2: verify the token
 	try {
-		const responseFromAuth = await fetch("http://localhost:8090/verify", {
-			method: "GET",
-			headers: {
-				cookie: `token=${token}`,
-			},
-		});
-
-		const { success, message, user } = await responseFromAuth.json();
-
-		console.log(success, message);
-		if (!success) {
+		const user = jwt.verify(token, process.env.MY_SECRET);
+		res.locals.user = user;
+		next();
+	} catch (err) {
+		if (err instanceof jwt.TokenExpiredError) {
 			return res.status(403).json({
 				success: false,
-				message,
+				message: "Token expired",
+			});
+		} else if (err instanceof jwt.JsonWebTokenError) {
+			return res.status(403).json({
+				success: false,
+				message: "Invalid token",
 			});
 		} else {
-			res.locals.user = user;
-			next();
+			return res.status(500).json({
+				success: false,
+				message: "Internal server error",
+			});
 		}
-	} catch (error) {
-		console.log("Error from auth: ", error);
 	}
 };
