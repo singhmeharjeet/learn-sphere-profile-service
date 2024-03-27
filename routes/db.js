@@ -77,7 +77,6 @@ const editProfile = async (username, updatedProfileData) => {
 };
 
 const getAllProfiles = async () => {
-	console.log("getting all profiles");
     try {
         const querySnapshot = await db.collection("profiles").get();
 
@@ -94,16 +93,13 @@ const getAllProfiles = async () => {
 
 const deleteProfile = async (username) => {
 	try {
-	  // Get a reference to the profile document
 	  const profileRef = db.collection("profiles").doc(username);
   
-	  // Check if the profile exists
 	  const profileDoc = await profileRef.get();
 	  if (!profileDoc.exists) {
 		return { success: false, message: "Profile not found" };
 	  }
   
-	  // Delete the profile document
 	  await profileRef.delete();
   
 	  return { success: true, message: "Profile deleted successfully" };

@@ -7,10 +7,9 @@ module.exports = (app) =>
         try {
             const { username, role } = res.locals.user;
             const { newProfileData } = req.body; 
-            console.log(newProfileData);
 
-            if (username === newProfileData.username || role === "admin") {
-               const editResult = await editProfile(newProfileData.username, newProfileData);
+            if (username === newProfileData.userId || role === "admin") {
+               const editResult = await editProfile(newProfileData.userId, newProfileData);
 
                 if (editResult.success) {
                     console.log("Profile update", newProfileData);
