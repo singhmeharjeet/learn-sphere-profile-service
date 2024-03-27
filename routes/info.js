@@ -1,7 +1,8 @@
+//info.js
 const { getAuth } = require("../middleware.js");
 
 const { getProfile, createProfile } = require("./db.js");
-
+//get profile
 module.exports = (app) =>
 	app.get("/info", getAuth, async (req, res) => {
 		const response = await getProfile(res.locals.user.username);

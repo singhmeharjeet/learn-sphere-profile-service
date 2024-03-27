@@ -3,6 +3,10 @@ const app = express();
 const setupInfoRoute = require("./routes/info");
 const cors = require("cors");
 const setupInfopostRoute = require("./routes/info-post");
+const setupEditpostRoute = require("./routes/edit");
+const setupGetAllRoute = require("./routes/all");
+const setupResetProfileRoute = require("./routes/reset");
+
 const PORT = process.env.PORT || 8100;
 
 app.use(cors());
@@ -17,6 +21,9 @@ app.get("/", (req, res) => {
 
 setupInfoRoute(app);
 setupInfopostRoute(app);
+setupEditpostRoute(app);
+setupGetAllRoute(app);
+setupResetProfileRoute(app);
 
 app.listen(PORT, () => {
 	console.log(`Profile Service is running on port: ${PORT}`);

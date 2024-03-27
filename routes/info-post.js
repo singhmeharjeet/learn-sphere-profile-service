@@ -1,7 +1,8 @@
+//info-post.js
 const { getAuth } = require("../middleware.js");
 
 const { createProfile } = require("./db.js");
-
+//create profile
 module.exports = (app) =>
 	app.post("/info", getAuth, async (req, res) => {
 		const response = await createProfile(
