@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+app.get("/api/profile-service/", (req, res) => {
 	res.json({
 		message: "Welcome to the Profile Service of Learn Sphere!",
 	});
