@@ -36,7 +36,7 @@ const createProfile = async function (username, profile_image = "placehold.it/40
 			message: "User profile already exists",
 		};
 	} else {
-		const profileJson = { //bio, joined courses
+		const profileJson = {
 			userId: username,
 			profileImg: profile_image,
 			biography: bio,

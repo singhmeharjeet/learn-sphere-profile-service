@@ -7,7 +7,8 @@ module.exports = (app) =>
 	app.post("/api/profile-service/info", getAuth, async (req, res) => {
 		const response = await createProfile(
 			res.locals.user.username,
-			req.body.img
+			req.body.img,
+			res.locals.user.role,
 		); //doubt in where to get the image from
 		if (response.success === true) {
 			return res.json({
