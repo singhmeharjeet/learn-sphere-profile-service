@@ -27,7 +27,7 @@ const getProfile = async (username) => {
 	}
 };
  
-const createProfile = async function (username, profile_role = "student", profile_image, bio = "No Biography", nick_name = "") {
+const createProfile = async function (username, profile_role = "student", profile_image = "", bio = "No Biography", nick_name = "") {
 	const DB_profile = await getProfile(username);
 
 	if (DB_profile.success === true) {
