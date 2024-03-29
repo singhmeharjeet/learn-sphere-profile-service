@@ -26,8 +26,8 @@ const getProfile = async (username) => {
 		return { success: false, message: "Profile not found" };
 	}
 };
-
-const createProfile = async function (username, profile_image = "placehold.it/400x400",  profile_role = "student", bio = "No Biography", nick_name = "") {
+ 
+const createProfile = async function (username, profile_role = "student", profile_image = "placehold.it/400x400", bio = "No Biography", nick_name = "") {
 	const DB_profile = await getProfile(username);
 
 	if (DB_profile.success === true) {
@@ -62,6 +62,7 @@ const createProfile = async function (username, profile_image = "placehold.it/40
 
 const editProfile = async (username, updatedProfileData) => {
     try {
+		
         const profileRef = db.collection("profiles").doc(username);
         const profileDoc = await profileRef.get();
 
