@@ -20,7 +20,7 @@ module.exports = (app) =>
 					return res.status(200).json({
 						success: true,
 						message: "Profile reset successfully",
-						user: createResult.user,
+						profile: createResult.user,
 					});
 				} else {
 					return res.status(400).json({

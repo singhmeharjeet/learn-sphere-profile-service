@@ -19,6 +19,7 @@ module.exports = (app) =>
 					return res.status(200).json({
 						success: true,
 						message: "Profile updated successfully",
+						profile: editResult
 					});
 				} else {
 					return res.status(400).json({

@@ -7,10 +7,10 @@ module.exports = (app) =>
 	app.get("/api/profile-service/info", getAuth, async (req, res) => {
 		const response = await getProfile(res.locals.user.username);
 		if (response.success === true) {
-			return res.json({
+			return res.status(200).json({
 				success: true,
 				message: "Profile exists!",
-				user: response.user,
+				profile: response.user,
 			});
 		} else {
 			// Create a profile
@@ -25,10 +25,10 @@ module.exports = (app) =>
 					message: "Profile creation failed",
 				});
 			} else {
-				return res.json({
+				return res.status(200).json({
 					success: true,
 					message: "New Profile Created!",
-					user: profileRes.user,
+					profile: profileRes.user,
 				});
 			}
 		}

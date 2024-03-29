@@ -27,7 +27,7 @@ const getProfile = async (username) => {
 	}
 };
 
-const createProfile = async function (username, profile_image, bio = "No Biography") {
+const createProfile = async function (username, profile_image = "placehold.it/400x400",  profile_role = "student", bio = "No Biography", nick_name = "") {
 	const DB_profile = await getProfile(username);
 
 	if (DB_profile.success === true) {
@@ -40,6 +40,8 @@ const createProfile = async function (username, profile_image, bio = "No Biograp
 			userId: username,
 			profileImg: profile_image,
 			biography: bio,
+			nickname: nick_name,
+			role: profile_role,
 		};
 
 		const db_response = await db

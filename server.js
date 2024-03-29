@@ -6,6 +6,7 @@ const setupInfopostRoute = require("./routes/info-post");
 const setupEditpostRoute = require("./routes/edit");
 const setupGetAllRoute = require("./routes/all");
 const setupResetProfileRoute = require("./routes/reset");
+const setupGetProfileByIdRoute = require("./routes/info-id");
 
 const PORT = process.env.PORT || 8100;
 
@@ -24,6 +25,7 @@ setupInfopostRoute(app);
 setupEditpostRoute(app);
 setupGetAllRoute(app);
 setupResetProfileRoute(app);
+setupGetProfileByIdRoute(app);
 
 app.listen(PORT, () => {
 	console.log(`Profile Service is running on port: ${PORT}`);

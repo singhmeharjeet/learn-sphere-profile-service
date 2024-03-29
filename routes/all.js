@@ -6,10 +6,10 @@ module.exports = (app) => {
 	app.get("/api/profile-service/all", getAuth, async (req, res) => {
 		const response = await getAllProfiles();
 		if (response.success === true) {
-			return res.json({
+			return res.status(200).json({
 				success: true,
 				message: "All profiles retrieved successfully",
-				profiles: response.profiles,
+				profile: response.profiles,
 			});
 		} else {
 			return res.status(500).json({
