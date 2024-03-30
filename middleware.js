@@ -31,7 +31,12 @@ module.exports.getAuth = async (req, res, next) => {
 	// Step 2: verify the token
 	try {
 		const user = jwt.verify(token, process.env.MY_SECRET);
-		res.locals.user = user;
+		res.locals.user = {
+			name: req.body.name,
+			username: user.username,
+			role: user.role,
+		};
+
 		next();
 	} catch (err) {
 		if (err instanceof jwt.TokenExpiredError) {

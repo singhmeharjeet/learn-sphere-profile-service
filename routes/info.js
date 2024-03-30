@@ -13,23 +13,9 @@ module.exports = (app) =>
 				profile: response.user,
 			});
 		} else {
-			// Create a profile
-			const profileRes = await createProfile(
-				res.locals.user.username,
-				res.locals.user.role,
-			);
-
-			if (profileRes.success === false) {
-				return res.status(400).json({
-					success: false,
-					message: "Profile creation failed",
-				});
-			} else {
-				return res.status(200).json({
-					success: true,
-					message: "New Profile Created!",
-					profile: profileRes.user,
-				});
-			}
+			return res.status(400).json({
+				success: false,
+				message: "Profile does not exist",
+			});
 		}
 	});
