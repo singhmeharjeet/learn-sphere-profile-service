@@ -13,37 +13,85 @@ Available Endpoints
 Welcome Message
 
     GET /api/profile-service/
-        Returns a welcome message indicating successful connection to the Profile Service.
 
+    Returns a welcome message indicating successful connection to the Profile Service.
+
+Profile Operations
 Get Profile Information
 
     GET /api/profile-service/info
-        Retrieves the profile information of the authenticated user.
+
+    Retrieves the profile information of the authenticated user.
 
 Create Profile
 
     POST /api/profile-service/info
-        Creates a new profile for the authenticated user.
+
+    Creates a new profile for the authenticated user.
+
+        Request Body:
+            username: Unique username of the user.
+            role: Role of the user (e.g., admin, teacher, student).
+
+        Response:
+            success: Indicates if the operation was successful.
+            message: Information message.
+            profile: Details of the created profile.
 
 Get Profile by User ID
 
     GET /api/profile-service/info/:userId
-        Retrieves the profile information of a user specified by their user ID.
+
+    Retrieves the profile information of a user specified by their user ID.
+        Response:
+            success: Indicates if the operation was successful.
+            message: Information message.
+            profile: Details of the requested user profile.
 
 Edit Profile
 
     PUT /api/profile-service/edit
-        Edits the profile of the authenticated user.
 
-Get All Profiles
+    Edits the profile of the authenticated user or an admin.
 
-    GET /api/profile-service/all
-        Retrieves information of all user profiles.
+        Request Body:
+            newProfileData: Updated profile data.
+
+        Response:
+            success: Indicates if the operation was successful.
+            message: Information message.
+            profile: Details of the updated profile.
 
 Reset Profile
 
     POST /api/profile-service/reset
-        Resets the profile of the authenticated user.
+
+    Resets the profile of the authenticated user.
+
+        Request Body:
+            userId: ID of the user whose profile needs to be reset.
+            profileImg: New profile image (optional).
+            biography: New biography (optional).
+
+        Response:
+            success: Indicates if the operation was successful.
+            message: Information message.
+            profile: Details of the reset profile.
+
+Get All Profiles
+
+    GET /api/profile-service/all
+
+    Retrieves information of all user profiles.
+        Response:
+            success: Indicates if the operation was successful.
+            message: Information message.
+            profiles: Array of user profiles.
+
+Error Handling
+
+In case of errors, appropriate HTTP status codes are returned along with error messages in the response body.
+
 
 Middleware
 
