@@ -7,7 +7,8 @@ Setup
     Install dependencies by running npm install.
 
     Ensure you have Firebase credentials in the profile_key.js file.
-    Ensure you have secrets in a .env file.
+    Ensure you have private_key, private_key_id, and MY_SECRET in a .env file.
+
 
 Available Endpoints
 Welcome Message
