@@ -5,6 +5,7 @@ const { createProfile } = require("./db.js");
 //create profile
 module.exports = (app) =>
 	app.post("/api/profile-service/info", getAuth, async (req, res) => {
+		console.log("User Created",res.locals.user);
 		const response = await createProfile(
 			res.locals.user.username, res.locals.user.role
 		); //doubt in where to get the image from

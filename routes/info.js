@@ -16,7 +16,7 @@ module.exports = (app) =>
 			// Create a profile
 			const profileRes = await createProfile(
 				res.locals.user.username,
-				null
+				res.locals.user.role,
 			);
 
 			if (profileRes.success === false) {
