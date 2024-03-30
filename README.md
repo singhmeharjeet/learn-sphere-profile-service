@@ -32,11 +32,11 @@ Get Profile Information
             message: Information message.
             profile: Details of the created profile.
 
-Create Profile if Profile does not exist for user.
+Create Profile
 
     POST /api/profile-service/info
 
-    Creates a new profile for the authenticated user.
+    Creates a new profile for the authenticated user only if Profile does not exist for user.
 
         Request Body: (note: request body is not required as token includes this information)
             username: Unique username of the user.
