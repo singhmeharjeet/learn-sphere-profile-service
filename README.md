@@ -23,7 +23,7 @@ Get Profile Information
 
     Retrieves the profile information of the authenticated user.
 
-Create Profile
+Get Profile or Create Profile if Profile does not exist for user.
 
     POST /api/profile-service/info
 
