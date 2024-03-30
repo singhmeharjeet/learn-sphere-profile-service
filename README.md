@@ -16,20 +16,28 @@ Welcome Message
 
     Returns a welcome message indicating successful connection to the Profile Service.
 
-Profile Operations
+
 Get Profile Information
 
     GET /api/profile-service/info
 
     Retrieves the profile information of the authenticated user.
+    
+        Request Body: (note: request body is not required as token includes this information)
+            username: Unique username of the user.
+            
+    Response:
+            success: Indicates if the operation was successful.
+            message: Information message.
+            profile: Details of the created profile.
 
-Get Profile or Create Profile if Profile does not exist for user.
+Create Profile if Profile does not exist for user.
 
     POST /api/profile-service/info
 
     Creates a new profile for the authenticated user.
 
-        Request Body:
+        Request Body: (note: request body is not required as token includes this information)
             username: Unique username of the user.
             role: Role of the user (e.g., admin, teacher, student).
 
