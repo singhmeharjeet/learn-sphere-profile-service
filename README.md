@@ -95,7 +95,7 @@ Get All Profiles
         Response:
             success: Indicates if the operation was successful.
             message: Information message.
-            profiles: Array of user profiles.
+            profile: Array of user profiles.
 
 Error Handling
 
