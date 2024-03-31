@@ -6,9 +6,8 @@ module.exports = (app) =>
 	app.put("/api/profile-service/edit", getAuth, async (req, res) => {
 		try {
 			const { username, role } = res.locals.user;
-			const { newProfileData } = req.body;
+			const newProfileData  = req.body;
 			
-
 			if(username !== newProfileData.userId && role !== "admin"){
 				return res.status(403).json({
 					success: false,
