@@ -1,11 +1,12 @@
 //info.js
 const { getAuth } = require("../middleware.js");
 
-const { getProfile, createProfile } = require("./db.js");
+const { getProfile } = require("./db.js");
 //get profile
 module.exports = (app) =>
 	app.get("/api/profile-service/info", getAuth, async (req, res) => {
 		const response = await getProfile(res.locals.user.username);
+
 		if (response.success === true) {
 			return res.status(200).json({
 				success: true,
