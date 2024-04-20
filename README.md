@@ -1,4 +1,4 @@
-Profile Service
+![LearnSphere Service Titles Profile](https://github.com/singhmeharjeet/learn-sphere-profile-service/assets/32851308/1ae739d6-e90c-4726-bab8-94830814fd93)
 
 The Profile Service of Learn Sphere provides endpoints to manage user profiles including creation, retrieval, update, and deletion. It utilizes Firebase Firestore as the database for storing user profiles.
 Setup
